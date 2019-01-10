@@ -18,32 +18,28 @@ while True:
           # print z
           api = 'https://api.github.com/repos/' + z + '/commits?per_page=100&page=' + str(x) + '&access_token=' + token
           print api
-#           r = requests.get(api)
-#           print r
+          r = requests.get(api)
+          print r
      
-#           if(r.ok):
-#                repoItem = json.loads(r.text or r.content)
-#                # print repoItem[0]['commit']['author']['email']
-#           if not repoItem:
-#                print "end of list."
-#                # z += 1
+          if(r.ok):
+               repoItem = json.loads(r.text or r.content)
+               # print repoItem[0]['commit']['author']['email']
+          if not repoItem:
+               print "end of list."
+               # z += 1
           
-#           for y in repoItem:
-#                if y['commit']['author']['email'] in contr:
-#                     contr[y['commit']['author']['email']] += 1
-#                     x += 1
-#                else:
-#                     contr[y['commit']['author']['email']] = 1
-#                x += 1
-#                print x
-#                # print contr
-          
-         
-          
-     
-#      # f.close()
-#      print x
-     
+          for y in repoItem:
+               if y['commit']['author']['email'] in contr:
+                    contr[y['commit']['author']['email']] += 1
+                    x += 1
+               else:
+                    contr[y['commit']['author']['email']] = 1
+               x += 1
+               print x
+               # print contr
 
-# with open('dict.txt', 'w') as f:
-#      f.write(str(contr))
+     # f.close()
+     print x
+
+with open('dict.txt', 'w') as f:
+     f.write(str(contr))
