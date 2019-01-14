@@ -4,8 +4,8 @@ import ast
 import csv
 
 contr = {}
-git_token = open("token", "r")
-git_token = git_token.read()
+github_token = open("token", "r")
+github_token = github_token.read()
 repo_response = {}
 x = 0
 z = 0
@@ -15,9 +15,9 @@ with open("repos_list") as file:
         line = line.strip()
         repos.append(line)
 while z != len(repos):
-     api = 'https://api.github.com/repos/{repository}/commits?per_page=100&page={pageNum}&access_token={gitToken}'.format(repository=repos[z], gitToken=git_token, pageNum=str(x))
+     api = 'https://api.github.com/repos/{}/commits?per_page=100&page={}&access_token={}'.format(repos[z], str(x), github_token,)
      x += 1
-     print "repository: {repository} page: {pageNum}".format(pageNum=x, repository=repos[z])
+     print "repository: {} page: {}".format(x, repos[z])
      r = requests.get(api)
      if(r.ok):
           repo_response = json.loads(r.text or r.content)
