@@ -17,7 +17,7 @@ with open("repos_list") as file:
 while z != len(repos):
      api = 'https://api.github.com/repos/{}/commits?per_page=100&page={}&access_token={}'.format(repos[z], str(x), github_token,)
      x += 1
-     print "repository: {} page: {}".format(x, repos[z])
+     print "repository: {} page: {}".format(repos[z], x)
      r = requests.get(api)
      if(r.ok):
           repo_response = json.loads(r.text or r.content)
